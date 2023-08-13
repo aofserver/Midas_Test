@@ -2,34 +2,11 @@
 // 1. run "npm install -g typescript" for install package typescript
 // 2 run "tsc Question_1.ts" for genarate .js file
 // 3 run "node Question_1.js" see output in terminal
-// function getWordlist():string[] {
-//   const url: string = "https://raw.githubusercontent.com/GMC254/Wordlist-1/master/master.txt";
-//   var requestOptions: {method:string} = { method: "GET" };
-//   fetch(url,requestOptions)
-//     .then((response) => response.text())
-//     .then((result) => { return result.split("\n") })
-//     .catch((error) => console.log("error", error));
-// }
-// function RemoteAssociatesTest(phrases: string[]) {
-//   try {
-//     var word :{ w1:string[],w2:string[],w3:string[] } = { w1:[],w2:[],w3:[] }
-//     var wordlist :string[] = getWordlist();
-//     for (const p of phrases) {
-//       console.log(p)
-//       wordlist.map((w) => {
-//         if(w.indexOf(p) !== -1){
-//           word.w1.push(w[w.indexOf(p)])
-//         }
-//       })
-//     }
-//     // return wordlist
-//   } catch (error) {
-//     // return error;
-//   }
-// }
 function getQuestionPart(phrases) {
     try {
         // validate input
+
+        
         var score = {};
         for (var _i = 0, phrases_1 = phrases; _i < phrases_1.length; _i++) {
             var p = phrases_1[_i];
@@ -95,7 +72,7 @@ function getQuestionPart(phrases) {
         return list_ans;
     }
     catch (error) {
-        // return error;
+        console.log("Wrong input!")
     }
 }
 console.log("ANS : ".concat(getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"])));
