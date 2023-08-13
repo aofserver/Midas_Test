@@ -3,36 +3,6 @@
 // 2 run "tsc Question_1.ts" for genarate .js file
 // 3 run "node Question_1.js" see output in terminal
 
-// function getWordlist():string[] {
-//   const url: string = "https://raw.githubusercontent.com/GMC254/Wordlist-1/master/master.txt";
-//   var requestOptions: {method:string} = { method: "GET" };
-
-//   fetch(url,requestOptions)
-//     .then((response) => response.text())
-//     .then((result) => { return result.split("\n") })
-//     .catch((error) => console.log("error", error));
-// }
-
-// function RemoteAssociatesTest(phrases: string[]) {
-//   try {
-//     var word :{ w1:string[],w2:string[],w3:string[] } = { w1:[],w2:[],w3:[] }
-//     var wordlist :string[] = getWordlist();
-//     for (const p of phrases) {
-//       console.log(p)
-//       wordlist.map((w) => {
-//         if(w.indexOf(p) !== -1){
-//           word.w1.push(w[w.indexOf(p)])
-          
-//         }
-//       })
-//     }
-
-//     // return wordlist
-//   } catch (error) {
-//     // return error;
-//   }
-// }
-
 function getQuestionPart(phrases: string[]): string[] {
   try {
     // validate input
