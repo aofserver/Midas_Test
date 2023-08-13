@@ -5,8 +5,9 @@
 function getQuestionPart(phrases) {
     try {
         // validate input
-
-        
+        if (phrases.length !== 3) {
+            throw "Wrong input!";
+        }
         var score = {};
         for (var _i = 0, phrases_1 = phrases; _i < phrases_1.length; _i++) {
             var p = phrases_1[_i];
@@ -72,7 +73,7 @@ function getQuestionPart(phrases) {
         return list_ans;
     }
     catch (error) {
-        console.log("Wrong input!")
+        console.log(error);
     }
 }
 console.log("ANS : ".concat(getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"])));
