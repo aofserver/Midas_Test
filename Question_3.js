@@ -8,6 +8,9 @@ function getQuestionPart(phrases) {
         if (phrases.length !== 3) {
             throw "Wrong input!";
         }
+        for (var index = 0; index < phrases.length; index++) {
+            phrases[index] = phrases[index].toUpperCase();
+        }
         var score = {};
         for (var _i = 0, phrases_1 = phrases; _i < phrases_1.length; _i++) {
             var p = phrases_1[_i];
@@ -30,13 +33,13 @@ function getQuestionPart(phrases) {
                             else {
                                 score[filter][select_word] = score[filter][select_word] + 1;
                             }
-                            // console.log(p,idx_start,idx_end,idx_slide,p.slice(idx_start+idx_slide,idx_end+idx_slide))
+                            // console.log("Conv:",p,idx_start,idx_end,idx_slide,p.slice(idx_start+idx_slide,idx_end+idx_slide))
                         }
                     }
                 }
             }
         }
-        // console.log(JSON.stringify(score))
+        // console.log("Conv Score",JSON.stringify(score))
         var ans = {};
         for (var _a = 0, _b = Object.keys(score); _a < _b.length; _a++) {
             var filter_1 = _b[_a];
@@ -52,20 +55,21 @@ function getQuestionPart(phrases) {
             }
         }
         var answer = "";
-        // ดilter 1 is not used because filter are a,e,i,o,u at most
+        // filter 1 is not used because filter are a,e,i,o,u at most
         for (var filter_2 = 2; filter_2 < Object.keys(ans).length - 1; filter_2++) {
             var key = filter_2.toString();
             var key_next = (filter_2 + 1).toString();
             if (ans[key_next].indexOf(ans[key]) !== -1) {
                 answer = ans[key_next];
+                answer = answer.trim();
             }
             else {
                 break;
             }
         }
-        // console.log("liat answer:",JSON.stringify(ans))
+        // console.log("List answer:",JSON.stringify(ans))
         var list_ans = [];
-        // console.log("answer:",answer)
+        // console.log("Answer:",answer)
         for (var _e = 0, phrases_2 = phrases; _e < phrases_2.length; _e++) {
             var p = phrases_2[_e];
             list_ans.push(p.replace(answer, ""));
@@ -78,3 +82,6 @@ function getQuestionPart(phrases) {
 }
 console.log("ANS : ".concat(getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"])));
 console.log("ANS : ".concat(getQuestionPart(["BEFRIEND", "GIRLFRIEND", "FRIENDSHIP"])));
+console.log("ANS : ".concat(getQuestionPart(["SWISS CHEESE", "CHEESE CAKE", "COTTAGE CHEESE"])));
+console.log("ANS : ".concat(getQuestionPart(["BOAT SHOW", "LIFE BOAT", "ROW BOAT"])));
+console.log("ANS : ".concat(getQuestionPart(["COMMON SENSE", "COURTESY COMMON", "COMMONPLACE"])));

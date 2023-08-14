@@ -10,6 +10,10 @@ function getQuestionPart(phrases: string[]): string[] {
       throw "Wrong input!"
     }
 
+    for (let index = 0; index < phrases.length; index++) {
+      phrases[index] = phrases[index].toUpperCase();
+    }
+
     var score = {}
     for (const p of phrases) {
       //convolution text 
@@ -32,14 +36,14 @@ function getQuestionPart(phrases: string[]): string[] {
               else{
                 score[filter][select_word] = score[filter][select_word] + 1
               }
-              // console.log(p,idx_start,idx_end,idx_slide,p.slice(idx_start+idx_slide,idx_end+idx_slide))
+              // console.log("Conv:",p,idx_start,idx_end,idx_slide,p.slice(idx_start+idx_slide,idx_end+idx_slide))
             }
           }
         }
       }
     }
 
-    // console.log(JSON.stringify(score))
+    // console.log("Conv Score",JSON.stringify(score))
     var ans = {} 
     for (const filter of Object.keys(score)) {
       for (const k of Object.keys(score[filter])) {
@@ -54,27 +58,27 @@ function getQuestionPart(phrases: string[]): string[] {
     }
 
     var answer:string = ""
-    // ดilter 1 is not used because filter are a,e,i,o,u at most
+    // filter 1 is not used because filter are a,e,i,o,u at most
     for (let filter = 2 ; filter < Object.keys(ans).length-1; filter++) {
       var key:string = filter.toString()
       var key_next:string = (filter+1).toString()
       if(ans[key_next].indexOf(ans[key]) !== -1){
         answer = ans[key_next]
+        answer = answer.trim()
       }
       else{
         break
       }
     }
 
-    // console.log("liat answer:",JSON.stringify(ans))
+    // console.log("List answer:",JSON.stringify(ans))
     var list_ans:string[] = []
-    // console.log("answer:",answer)
+    // console.log("Answer:",answer)
     for (const p of phrases) {
       list_ans.push(p.replace(answer, ""))
     }
 
     return list_ans
-
   } catch (error) {
     console.log(error)
   }
@@ -82,3 +86,6 @@ function getQuestionPart(phrases: string[]): string[] {
 
 console.log(`ANS : ${getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"])}`)
 console.log(`ANS : ${getQuestionPart(["BEFRIEND", "GIRLFRIEND", "FRIENDSHIP"])}`)
+console.log(`ANS : ${getQuestionPart(["SWISS CHEESE", "CHEESE CAKE", "COTTAGE CHEESE"])}`)
+console.log(`ANS : ${getQuestionPart(["BOAT SHOW", "LIFE BOAT", "ROW BOAT"])}`)
+console.log(`ANS : ${getQuestionPart(["COMMON SENSE", "COURTESY COMMON", "COMMONPLACE"])}`)
